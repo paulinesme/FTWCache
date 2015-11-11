@@ -30,7 +30,8 @@ static NSTimeInterval cacheTime =  (double)604800;
 	if ([fileManager fileExistsAtPath:filename])
 	{
 		NSDate *modificationDate = [[fileManager attributesOfItemAtPath:filename error:nil] objectForKey:NSFileModificationDate];
-		if ([modificationDate timeIntervalSinceNow] > cacheTime) {
+        NSLog(@"Timeinterval since now : %f", [modificationDate timeIntervalSinceNow]);
+        if (ABS([modificationDate timeIntervalSinceNow]) > cacheTime) {
 			[fileManager removeItemAtPath:filename error:nil];
 		} else {
 			NSData *data = [NSData dataWithContentsOfFile:filename];
